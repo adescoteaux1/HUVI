@@ -25,16 +25,13 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static const String initialRoute = '/initialRoute';
-
-  static Map<String, WidgetBuilder> get routes => {
-        signUpVoneScreen: SignUpVoneScreen.builder,
-        loginVtwoScreen: LoginVtwoScreen.builder,
-        profileVoneScreen: ProfileVoneScreen.builder,
-        welcomeVtwoScreen: WelcomeVtwoScreen.builder,
-        uvStatusVoneContainerScreen: UvStatusVoneContainerScreen.builder,
-        recommendationVoneScreen: RecommendationVoneScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: WelcomeVtwoScreen.builder
-      };
+  static Map<String, WidgetBuilder> routes = {
+    signUpVoneScreen: (context) => SignUpVoneScreen(),
+    loginVtwoScreen: (context) => LoginVtwoScreen(),
+    profileVoneScreen: (context) => ProfileVoneScreen(),
+    welcomeVtwoScreen: (context) => WelcomeVtwoScreen(),
+    uvStatusVoneContainerScreen: (context) => UvStatusVoneContainerScreen(),
+    recommendationVoneScreen: (context) => RecommendationVoneScreen(),
+    appNavigationScreen: (context) => AppNavigationScreen()
+  };
 }

@@ -1,5 +1,3 @@
-import 'bloc/recommendation_vone_bloc.dart';
-import 'models/recommendation_vone_model.dart';
 import 'package:alexandra_descoteaux_s_application2/core/app_export.dart';
 import 'package:alexandra_descoteaux_s_application2/presentation/uv_status_vone_page/uv_status_vone_page.dart';
 import 'package:alexandra_descoteaux_s_application2/widgets/app_bar/appbar_image.dart';
@@ -15,93 +13,81 @@ class RecommendationVoneScreen extends StatelessWidget {
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<RecommendationVoneBloc>(
-        create: (context) => RecommendationVoneBloc(RecommendationVoneState(
-            recommendationVoneModelObj: RecommendationVoneModel()))
-          ..add(RecommendationVoneInitialEvent()),
-        child: RecommendationVoneScreen());
-  }
-
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return BlocBuilder<RecommendationVoneBloc, RecommendationVoneState>(
-        builder: (context, state) {
-      return SafeArea(
-          child: Scaffold(
-              backgroundColor: appTheme.yellow700.withOpacity(0.68),
-              appBar: CustomAppBar(
-                  height: 42.v,
-                  leadingWidth: 41.h,
-                  leading: AppbarImage(
-                      svgPath: ImageConstant.imgArrowleftYellow900,
-                      margin:
-                          EdgeInsets.only(left: 17.h, top: 9.v, bottom: 9.v),
-                      onTap: () {
-                        onTapArrowleftone(context);
-                      }),
-                  title: AppbarTitle(
-                      text: "lbl_recommendations".tr,
-                      margin: EdgeInsets.only(left: 143.h))),
-              body: Container(
-                  width: 395.h,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.h, vertical: 8.v),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(left: 55.h),
-                            child: Text("lbl_high_uv_level".tr,
-                                style: theme.textTheme.headlineLarge)),
-                        Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                                width: 282.h,
-                                margin: EdgeInsets.only(
-                                    left: 32.h, top: 5.v, right: 40.h),
-                                child: Text("msg_try_to_find_some".tr,
-                                    maxLines: 9,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: theme.textTheme.titleLarge!
-                                        .copyWith(height: 1.27)))),
-                        CustomElevatedButton(
-                            text: "lbl_learn_more".tr,
-                            margin: EdgeInsets.only(
-                                left: 1.h, top: 13.v, right: 19.h)),
-                        SizedBox(height: 30.v),
-                        RichText(
-                            text: TextSpan(children: [
-                              TextSpan(text: " "),
-                              TextSpan(
-                                  text: "lbl_actions2".tr,
-                                  style: CustomTextStyles.headlineMediumBold)
-                            ]),
-                            textAlign: TextAlign.left),
-                        CustomElevatedButton(
-                            text: "msg_set_sunscreen_timer".tr,
-                            margin: EdgeInsets.only(
-                                left: 1.h, top: 17.v, right: 18.h),
-                            leftIcon: Container(
-                                margin: EdgeInsets.only(right: 2.h),
-                                child: CustomImageView(
-                                    svgPath: ImageConstant.imgClockGray100))),
-                        CustomElevatedButton(
-                            text: "msg_enable_uv_alerts".tr,
-                            margin: EdgeInsets.only(
-                                top: 9.v, right: 19.h, bottom: 5.v),
-                            leftIcon: Container(
-                                margin: EdgeInsets.only(right: 17.h),
-                                child: CustomImageView(
-                                    svgPath: ImageConstant.imgNotification)))
-                      ])),
-              bottomNavigationBar:
-                  CustomBottomBar(onChanged: (BottomBarEnum type) {
-                Navigator.pushNamed(
-                    navigatorKey.currentContext!, getCurrentRoute(type));
-              })));
-    });
+    return SafeArea(
+        child: Scaffold(
+            backgroundColor: appTheme.yellow700.withOpacity(0.68),
+            appBar: CustomAppBar(
+                height: 42.v,
+                leadingWidth: 41.h,
+                leading: AppbarImage(
+                    svgPath: ImageConstant.imgArrowleftYellow900,
+                    margin: EdgeInsets.only(left: 17.h, top: 9.v, bottom: 9.v),
+                    onTap: () {
+                      onTapArrowleftone(context);
+                    }),
+                title: AppbarTitle(
+                    text: "RECOMMENDATIONS ",
+                    margin: EdgeInsets.only(left: 143.h))),
+            body: Container(
+                width: 395.h,
+                padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 8.v),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(left: 55.h),
+                          child: Text("High UV Level:",
+                              style: theme.textTheme.headlineLarge)),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                              width: 282.h,
+                              margin: EdgeInsets.only(
+                                  left: 32.h, top: 5.v, right: 40.h),
+                              child: Text(
+                                  "Try to find some shade\n\nReapply Sunscreen every 45 minutes\n\nWhite sand, water, and other bright surfaces reflect UVs and increase risk of exposure",
+                                  maxLines: 9,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.titleLarge!
+                                      .copyWith(height: 1.27)))),
+                      CustomElevatedButton(
+                          text: "Learn More",
+                          margin: EdgeInsets.only(
+                              left: 1.h, top: 13.v, right: 19.h)),
+                      SizedBox(height: 30.v),
+                      RichText(
+                          text: TextSpan(children: [
+                            TextSpan(text: " "),
+                            TextSpan(
+                                text: "Actions:\n",
+                                style: CustomTextStyles.headlineMediumBold)
+                          ]),
+                          textAlign: TextAlign.left),
+                      CustomElevatedButton(
+                          text: "SET SUNSCREEN TIMER",
+                          margin: EdgeInsets.only(
+                              left: 1.h, top: 17.v, right: 18.h),
+                          leftIcon: Container(
+                              margin: EdgeInsets.only(right: 2.h),
+                              child: CustomImageView(
+                                  svgPath: ImageConstant.imgClockGray100))),
+                      CustomElevatedButton(
+                          text: "ENABLE UV ALERTS",
+                          margin: EdgeInsets.only(
+                              top: 9.v, right: 19.h, bottom: 5.v),
+                          leftIcon: Container(
+                              margin: EdgeInsets.only(right: 17.h),
+                              child: CustomImageView(
+                                  svgPath: ImageConstant.imgNotification)))
+                    ])),
+            bottomNavigationBar:
+                CustomBottomBar(onChanged: (BottomBarEnum type) {
+              Navigator.pushNamed(
+                  navigatorKey.currentContext!, getCurrentRoute(type));
+            })));
   }
 
   ///Handling route based on bottom click actions
@@ -119,25 +105,20 @@ class RecommendationVoneScreen extends StatelessWidget {
   }
 
   ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
+  Widget getCurrentPage(String currentRoute) {
     switch (currentRoute) {
       case AppRoutes.uvStatusVonePage:
-        return UvStatusVonePage.builder(context);
+        return UvStatusVonePage();
       default:
         return DefaultWidget();
     }
   }
 
-  /// Navigates to the previous screen.
+  /// Navigates back to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is
-  /// used to build the navigation stack. When the action is triggered, this
-  /// function uses the [NavigatorService] to navigate to the previous screen
-  /// in the navigation stack.
+  /// This function takes a [BuildContext] object as a parameter, which is used
+  /// to navigate back to the previous screen.
   onTapArrowleftone(BuildContext context) {
-    NavigatorService.goBack();
+    Navigator.pop(context);
   }
 }
