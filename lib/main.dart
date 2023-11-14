@@ -1,54 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'core/app_export.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:alexandra_descoteaux_s_application2/theme/theme_helper.dart';
+import 'package:alexandra_descoteaux_s_application2/routes/app_routes.dart';
 
-var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Future.wait([
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]),
-    PrefUtils().init()
-  ]).then((value) {
-    runApp(MyApp());
-  });
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  ///Please update theme as per your need if required.
+  ThemeHelper().changeTheme('primary');
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeBloc(
-        ThemeState(
-          themeType: PrefUtils().getThemeData(),
-        ),
-      ),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          return MaterialApp(
-            theme: theme,
-            title: 'alexandra_descoteaux_s_application2',
-            navigatorKey: NavigatorService.navigatorKey,
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: [
-              AppLocalizationDelegate(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: [
-              Locale(
-                'en',
-                '',
-              ),
-            ],
-            initialRoute: AppRoutes.initialRoute,
-            routes: AppRoutes.routes,
-          );
-        },
-      ),
+    return MaterialApp(
+      theme: theme,
+      title: 'alexandra_descoteaux_s_application2',
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.signUpVoneScreen,
+      routes: AppRoutes.routes,
     );
   }
 }

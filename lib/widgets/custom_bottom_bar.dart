@@ -17,19 +17,19 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     BottomMenuModel(
       icon: ImageConstant.imgNavprofile,
       activeIcon: ImageConstant.imgNavprofile,
-      title: "lbl_profile".tr,
+      title: "\n\nProfile",
       type: BottomBarEnum.Profile,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavuvdashboard,
       activeIcon: ImageConstant.imgNavuvdashboard,
-      title: "lbl_uv_dashboard".tr,
+      title: "UV Dashboard",
       type: BottomBarEnum.Uvdashboard,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavanalytics,
       activeIcon: ImageConstant.imgNavanalytics,
-      title: "lbl_analytics".tr,
+      title: "\n\nAnalytics",
       type: BottomBarEnum.Analytics,
     )
   ];
@@ -113,11 +113,11 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "\n\n".tr,
+                          text: "",
                           style: CustomTextStyles.labelLargeOnPrimary,
                         ),
                         TextSpan(
-                          text: "lbl_profile2".tr,
+                          text: "Profile",
                           style: theme.textTheme.labelLarge,
                         ),
                       ],

@@ -1,5 +1,3 @@
-import 'bloc/profile_vone_bloc.dart';
-import 'models/profile_vone_model.dart';
 import 'package:alexandra_descoteaux_s_application2/core/app_export.dart';
 import 'package:alexandra_descoteaux_s_application2/widgets/app_bar/appbar_image.dart';
 import 'package:alexandra_descoteaux_s_application2/widgets/app_bar/appbar_image_1.dart';
@@ -9,20 +7,12 @@ import 'package:alexandra_descoteaux_s_application2/widgets/custom_text_form_fie
 import 'package:flutter/material.dart';
 
 class ProfileVoneScreen extends StatelessWidget {
-  const ProfileVoneScreen({Key? key})
+  ProfileVoneScreen({Key? key})
       : super(
           key: key,
         );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ProfileVoneBloc>(
-      create: (context) => ProfileVoneBloc(ProfileVoneState(
-        profileVoneModelObj: ProfileVoneModel(),
-      ))
-        ..add(ProfileVoneInitialEvent()),
-      child: ProfileVoneScreen(),
-    );
-  }
+  TextEditingController buttononeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +75,7 @@ class ProfileVoneScreen extends StatelessWidget {
                     ),
                     CustomElevatedButton(
                       width: 335.h,
-                      text: "lbl_edit_profile".tr,
+                      text: "EDIT PROFILE",
                       margin: EdgeInsets.only(left: 18.h),
                       leftIcon: Container(
                         margin: EdgeInsets.only(right: 17.h),
@@ -117,7 +107,7 @@ class ProfileVoneScreen extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.only(bottom: 75.v),
                                 child: Text(
-                                  "lbl_age_32".tr,
+                                  "Age: 32",
                                   style: theme.textTheme.bodyLarge,
                                 ),
                               ),
@@ -127,7 +117,7 @@ class ProfileVoneScreen extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.only(bottom: 51.v),
                                 child: Text(
-                                  "lbl_eye_color_blue".tr,
+                                  "Eye color: Blue",
                                   style: theme.textTheme.bodyLarge,
                                 ),
                               ),
@@ -145,7 +135,7 @@ class ProfileVoneScreen extends StatelessWidget {
                                       child: SizedBox(
                                         width: 346.h,
                                         child: Text(
-                                          "msg_skin_details_burns".tr,
+                                          "Skin details: burns easily, applies sunscreen\n      regularly,  \n ",
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: theme.textTheme.bodyLarge!
@@ -168,14 +158,14 @@ class ProfileVoneScreen extends StatelessWidget {
                                               padding:
                                                   EdgeInsets.only(left: 1.h),
                                               child: Text(
-                                                "lbl_jennifer".tr,
+                                                "Jennifer",
                                                 style: CustomTextStyles
                                                     .headlineLargeYellow900Bold,
                                               ),
                                             ),
                                             SizedBox(height: 14.v),
                                             Text(
-                                              "lbl_fair_skin".tr,
+                                              "Fair Skin",
                                               style: theme.textTheme.bodyLarge,
                                             ),
                                           ],
@@ -219,7 +209,7 @@ class ProfileVoneScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "lbl_stats".tr,
+                                  "Stats:",
                                   style: theme.textTheme.headlineSmall,
                                 ),
                                 Padding(
@@ -231,15 +221,15 @@ class ProfileVoneScreen extends StatelessWidget {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: "lbl_total_sun_time".tr,
+                                          text: "Total Sun Time",
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         TextSpan(
-                                          text: "lbl".tr,
+                                          text: ":",
                                           style: theme.textTheme.bodyLarge,
                                         ),
                                         TextSpan(
-                                          text: "lbl_54_hr_20m".tr,
+                                          text: "  54 hr 20m",
                                           style: theme.textTheme.bodyLarge,
                                         ),
                                         TextSpan(
@@ -259,11 +249,11 @@ class ProfileVoneScreen extends StatelessWidget {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: "msg_daily_average_sun2".tr,
+                                          text: "Daily Average Sun Time: ",
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         TextSpan(
-                                          text: "lbl_24m".tr,
+                                          text: "24m ",
                                           style: theme.textTheme.bodyLarge,
                                         ),
                                       ],
@@ -284,12 +274,13 @@ class ProfileVoneScreen extends StatelessWidget {
                                           text: TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: "msg_huvi_protection2".tr,
+                                                text:
+                                                    "HUVI Protection Rating:  ",
                                                 style:
                                                     theme.textTheme.titleMedium,
                                               ),
                                               TextSpan(
-                                                text: "lbl_b".tr,
+                                                text: "B+ ",
                                                 style:
                                                     theme.textTheme.bodyLarge,
                                               ),
@@ -329,38 +320,31 @@ class ProfileVoneScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BlocSelector<ProfileVoneBloc, ProfileVoneState,
-                        TextEditingController?>(
-                      selector: (state) => state.buttononeController,
-                      builder: (context, buttononeController) {
-                        return CustomTextFormField(
-                          width: 200.h,
-                          controller: buttononeController,
-                          margin: EdgeInsets.only(
-                            left: 16.h,
-                            top: 15.v,
-                          ),
-                          hintText: "lbl_view_analytics".tr,
-                          textInputAction: TextInputAction.done,
-                          prefix: Container(
-                            margin: EdgeInsets.fromLTRB(19.h, 3.v, 5.h, 2.v),
-                            child: CustomImageView(
-                              svgPath: ImageConstant.imgChartBar,
-                            ),
-                          ),
-                          prefixConstraints: BoxConstraints(
-                            maxHeight: 29.v,
-                          ),
-                          contentPadding: EdgeInsets.only(
-                            top: 6.v,
-                            right: 30.h,
-                            bottom: 6.v,
-                          ),
-                          borderDecoration:
-                              TextFormFieldStyleHelper.outlineBlack,
-                          fillColor: theme.colorScheme.primary,
-                        );
-                      },
+                    CustomTextFormField(
+                      width: 200.h,
+                      controller: buttononeController,
+                      margin: EdgeInsets.only(
+                        left: 16.h,
+                        top: 15.v,
+                      ),
+                      hintText: "View Analytics",
+                      textInputAction: TextInputAction.done,
+                      prefix: Container(
+                        margin: EdgeInsets.fromLTRB(19.h, 3.v, 5.h, 2.v),
+                        child: CustomImageView(
+                          svgPath: ImageConstant.imgChartBar,
+                        ),
+                      ),
+                      prefixConstraints: BoxConstraints(
+                        maxHeight: 29.v,
+                      ),
+                      contentPadding: EdgeInsets.only(
+                        top: 6.v,
+                        right: 30.h,
+                        bottom: 6.v,
+                      ),
+                      borderDecoration: TextFormFieldStyleHelper.outlineBlack,
+                      fillColor: theme.colorScheme.primary,
                     ),
                     SizedBox(height: 13.v),
                     CustomImageView(
@@ -385,7 +369,7 @@ class ProfileVoneScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "lbl_achievements".tr,
+                                    "Achievements:",
                                     style: CustomTextStyles.titleLargeYellow900,
                                   ),
                                   Padding(
@@ -608,7 +592,7 @@ class ProfileVoneScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 6.v),
                                 Text(
-                                  "lbl_gold".tr,
+                                  "GOLD",
                                   style:
                                       CustomTextStyles.labelLargeInterWhiteA700,
                                 ),
@@ -622,7 +606,7 @@ class ProfileVoneScreen extends StatelessWidget {
                     CustomElevatedButton(
                       height: 29.v,
                       width: 200.h,
-                      text: "lbl_view_more".tr,
+                      text: "View More",
                       margin: EdgeInsets.only(left: 22.h),
                       buttonStyle: CustomButtonStyles.outlineBlackTL14,
                     ),
